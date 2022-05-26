@@ -1,0 +1,134 @@
+<!DOCTYPE html> {%load static%}
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="csrf_token" content="">
+    <meta name="author" content="">
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <script src="http://code.jquery.com/jquery.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.js' %}"></script>
+
+    <title>IUM</title>
+</head>
+
+<body id="page-top">
+    <style>
+        form label {
+            display: block;
+            float: left;
+            width: 150px;
+            text-align: right;
+            padding: 1px 5px 0 0;
+        }
+        
+        form input[type='text'],
+        form input[type='password'] {
+            display: block;
+            padding: 2px;
+            width: 250px;
+        }
+        
+        form input[type='submit'] {
+            padding: 0px 15px 0px 15px;
+            width: 150px;
+            text-align: center;
+            margin: 3px 20px 3px 160px;
+        }
+        
+        h2#msg {
+            color: rgb(92, 11, 11);
+            size: 50px;
+            margin-left: 450px;
+        }
+        
+        .content {
+            background-color: rgb(221, 142, 132);
+        }
+        
+        .container-fluid {
+            margin-top: 100px;
+            border-radius: 10px;
+            height: 250px;
+            width: 500px;
+        }
+        
+        #idtable {
+            margin-top: 40px;
+        }
+        
+        .container-fluid {
+            background-color: rgb(236, 189, 230);
+        }
+        
+        .imglogo {
+            margin-left: 15px;
+        }
+        
+        #titresite {
+            margin-left: 280px;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            ;
+        }
+        
+        footer {
+            background-color: rgb(68, 68, 102);
+            font-family: inherit;
+            color: white;
+            margin-top: 400px;
+        }
+        
+        body section#content {
+            position: absolute;
+            top: 170px;
+            left: 50%;
+            width: 500px;
+            margin: 0 0 0 -250px;
+            padding: 0;
+        }
+    </style>
+
+    <div id="content-wrapper" class="d-flex flex-column">
+        <!-- Main Content -->
+        <div class="">
+            <nav class="navbar navbar-expand navbar-light topbar mb-4 static-top shadow text-white" style="background-color:rgb(69, 38, 83) ;">
+                <img src="{% static 'img/logo1.png' %}" alt="" style="height:50px;width: 50px;" class="imglogo">
+                <h1 id="titresite">INSTITUT UNIVERSITAIRE MATAMFEN</h1>
+            </nav>
+            <h2 id="msg">{%block erreur%}{%endblock%}</h2>
+        </div>
+        <section id="content">
+            {%block content%}{%endblock%}
+        </section>
+
+    </div>
+    <footer>
+        <div class="container">
+            <center>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>
+                                SITE WEB:
+                            </td>
+                            <td><a href="#">WWW.MATAMFEN-SUP.COM</a></td>
+                        </tr>
+                        <TR>
+                            <td>CONTACT :</td>
+                            <td>
+                                <h6>(+237) 000 000 000 / (+237) 000 000 000 </h6>
+                            </td>
+                        </TR>
+                    </tbody>
+                </table>
+            </center>
+        </div>
+    </footer>
+</body>
+
+</html>
