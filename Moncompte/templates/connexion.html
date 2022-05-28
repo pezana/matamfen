@@ -1,6 +1,8 @@
 {%extends 'base.html'%} {%block erreur%} {{msg.etudiant.etud_lieu}} {%endblock erreur%} {%block content%}
 <form action="{%url 'connexion'%}" method="POST" enctype="multipart/form-data">
     {% csrf_token%} {{ form.as_p}}
-    <button type="submit" class="btn btn-primary">se connecter</button>
+    <div id="centre">
+        <button type="submit" id="monbtn">se connecter</button>
+    </div>
 </form>
 {%endblock content%}

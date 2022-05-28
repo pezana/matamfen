@@ -7,7 +7,8 @@ admin.site.register(etudiant)
 admin.site.register(inscription)
 admin.site.register(formation)
 admin.site.register(anneeacademique)
-
+admin.site.register(profmatiere)
+admin.site.register(notes)
 class listeetudiant(ImportExportModelAdmin):
     liste_display=('nom','prenom')
 
