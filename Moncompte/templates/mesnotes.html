@@ -1,2 +1,2 @@
-{%extends 'base2.html'%} {%block profil %}{{logged_user.etudiant}}-{{logged_user.etudiant.etud_prenom}}{%endblock profil %} {%block specialite %}{{logged_user.formation.for_detailformation}}, {{logged_user.formation.for_niveau}}, {{logged_user.formation.for_tutelle}}
+{%extends 'base2.html'%} {%block profil %} {{logged_user.etudiant}}-{{logged_user.etudiant.prenom}}{%endblock profil %} {%block specialite %} {{logged_user.formation.detailformation}}, {{logged_user.formation.niveau}}, {{logged_user.formation.tutelle}}
 {%endblock specialite%} {%block menu %} Mes notes {%endblock menu %} {%block action %}-{%endblock action %} {%block interne%} {%endblock interne%}

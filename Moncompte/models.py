@@ -16,6 +16,7 @@ class formation(models.Model):
     detailformation=models.CharField(max_length=50,null=True,blank=True)
     periode=models.CharField(max_length=50,null=True,blank=True)
     niveau=models.CharField(max_length=50,null=True,blank=True)
+    cycle=models.CharField(max_length=50,null=True, blank=True)
     idf=models.IntegerField()    
     class meta():
         verbose_name='formation'
@@ -50,11 +51,9 @@ class anneeacademique(models.Model):
         return reverse(anneeacademique, kwargs={"pk": self.pk})
         
 class profmatiere(models.Model):
-    formation=models.ForeignKey(formation, verbose_name=("formation"), on_delete=models.CASCADE,null=True, blank=True)
+    formationpm=models.ForeignKey(formation, verbose_name=("formation"), on_delete=models.CASCADE,null=True, blank=True)
     # formasem vient une fois avec dans la requette des profmat
     semestre=models.CharField(max_length=50)
-    cycle=models.CharField(max_length=50,null=True, blank=True)
-    niveau=models.CharField(max_length=50,null=True, blank=True)
     idsem=models.IntegerField()    
     # ajout des formasue aussi dans la requette 
     ue=models.CharField(max_length=50)    
@@ -62,8 +61,7 @@ class profmatiere(models.Model):
     creditue=models.IntegerField()
     moduleue=models.CharField(max_length=50,null=True, blank=True)
     idue=models.IntegerField()
-    idfor=models.IntegerField()
-    
+    idfor=models.IntegerField()    
    # ajout maintenant de la profmat 
     matiere=models.CharField(max_length=50)
     enseignant=models.CharField(max_length=50,null=True, blank=True)  
@@ -96,10 +94,11 @@ class emplois_de_temps(models.Model):
 class inscription(models.Model):
     idins=models.IntegerField() 
     idf=models.IntegerField()  
+    idfor=models.IntegerField() 
     idan=models.IntegerField()
     etudiant=models.ForeignKey(etudiant, on_delete=models.CASCADE,related_name="etudiant",null=True)  
-    anneeacademique=models.ForeignKey(anneeacademique, verbose_name=("anneeacademique"), on_delete=models.CASCADE,related_name="anneeacademique",null=True)
-    formation=models.ForeignKey(formation, verbose_name=("formation"), on_delete=models.CASCADE,related_name="formation",null=True) 
+    anneeacademique=models.ForeignKey(anneeacademique, verbose_name=("anneeacademique"), on_delete=models.CASCADE,null=True)
+    formationins=models.ForeignKey(formation, verbose_name=("formation"), on_delete=models.CASCADE,null=True) 
     inslogin=models.CharField(max_length=50,null=True)    
     insmdp=models.CharField(max_length=50,null=True)
     tof=models.ImageField(null=True, blank=True)

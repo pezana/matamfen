@@ -1,27 +1,29 @@
-{%extends 'base2.html'%} {%block profil %}{{logged_user.etudiant}}-{{logged_user.etudiant.prenom}}{%endblock profil %} {%block specialite %}{{logged_user.formation.detailformation}}, {{logged_user.formation.niveau}}, {{logged_user.formation.tutelle}}
+{%extends 'base2.html'%} {%block profil %} {{logged_user.etudiant}}-{{logged_user.etudiant.prenom}}{%endblock profil %} {%block specialite %}{{logged_user.formation.detailformation}}, {{logged_user.formation.niveau}}, {{logged_user.formation.tutelle}}
 {%endblock specialite%} {%block menu %}Syllabus{%endblock menu %} {%block action %} Liste des cours{%endblock action %} {%block interne%}
 <table class="table">
     <thead>
         <td>N°</td>
         <td>semestre</td>
         <td>ue</td>
-        <td>matiere</td>
         <td>code matiere</td>
+        <td>matiere</td>
         <td>credits matiere</td>
         <td>Détail</td>
     </thead>
     <tbody>
+        {% for item in syl%}
         <tr>
             <td>1</td>
-            <td>semestre 5</td>
-            <td>gestion des projets</td>
-            <td>atelier des genie logiciel</td>
-            <td> igl 523</td>
-            <td> 4 crédit(s)</td>
+            <td>{{item.semestre}}</td>
+            <td>{{item.ue|truncatechars:15}}</td>
+            <td>{{item.codepm}}</td>
+            <td>{{item.matiere}}</td>
+            <td>{{item.creditpm}}crédit(s)</td>
             <td> <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
             detail
            </button></td>
         </tr>
+        {% endfor %}
     </tbody>
 </table>
 {%endblock interne %}

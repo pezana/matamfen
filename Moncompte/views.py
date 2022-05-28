@@ -50,7 +50,9 @@ def bienvenue(request):
 def syllabus(request):  
     logged_user=get_logger_user_id_from_request(request)
     if logged_user: 
-        return render(request,'syllabus.html',{'logged_user':logged_user})  
+        inscrit=inscription.objects.get(id=logged_user.id)
+        syllabus=profmatiere.objects.filter(idfor=inscrit.idfor).order_by('semestre','codepm')
+        return render(request,'syllabus.html',{'logged_user':logged_user,'syl':syllabus})  
     else:
         return redirect('connexion')     
 
@@ -83,17 +85,10 @@ def formationapi(request):
         training=JSONParser().parse(request)
         serializer=formationserialiser(data=training,many=True)
         if serializer.is_valid():
-            serializer.save()
-            reaffectationformation()            
+            serializer.save()      
             return JsonResponse('enregistrement avec succès',safe=False)
         return JsonResponse('echec d enregistrement123',safe=False)
 
-def reaffectationformation(request):
-    for inscrit in inscription:
-        if inscrit.formation!='':
-            maformation=get_object_or_404(formation,idf=inscrit.idf)
-            inscrit.formation=maformation
-            inscrit.save()     
       
 @api_view(['GET', 'POST', 'DELETE'])     
 def etudiantapi(request):
