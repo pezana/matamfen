@@ -3,6 +3,7 @@ from pickle import TRUE
 from sre_parse import Verbose
 from django.db import models
 from django.urls import reverse
+from decimal import *
 
 # Create your models here.
 class formation(models.Model):
@@ -51,7 +52,7 @@ class anneeacademique(models.Model):
         return reverse(anneeacademique, kwargs={"pk": self.pk})
         
 class profmatiere(models.Model):
-    formationpm=models.ForeignKey(formation, verbose_name=("formation"), on_delete=models.CASCADE,null=True, blank=True)
+    formation=models.ForeignKey(formation, verbose_name=("formation"), on_delete=models.CASCADE,null=True, blank=True)
     # formasem vient une fois avec dans la requette des profmat
     semestre=models.CharField(max_length=50)
     idsem=models.IntegerField()    
@@ -96,9 +97,10 @@ class inscription(models.Model):
     idf=models.IntegerField()  
     idfor=models.IntegerField() 
     idan=models.IntegerField()
+    idetud=models.IntegerField()
     etudiant=models.ForeignKey(etudiant, on_delete=models.CASCADE,related_name="etudiant",null=True)  
     anneeacademique=models.ForeignKey(anneeacademique, verbose_name=("anneeacademique"), on_delete=models.CASCADE,null=True)
-    formationins=models.ForeignKey(formation, verbose_name=("formation"), on_delete=models.CASCADE,null=True) 
+    formation=models.ForeignKey(formation, verbose_name=("formation"), on_delete=models.CASCADE,null=True) 
     inslogin=models.CharField(max_length=50,null=True)    
     insmdp=models.CharField(max_length=50,null=True)
     tof=models.ImageField(null=True, blank=True)
@@ -112,9 +114,11 @@ class inscription(models.Model):
 class notes(models.Model):
     idpm=models.IntegerField()
     idins=models.IntegerField()
-    moyesem=models.DecimalField(max_digits=2,decimal_places=2)
-    moyue=models.DecimalField(max_digits=2,decimal_places=2)
-    moypm=models.DecimalField(max_digits=2,decimal_places=2)
+    moyesem=models.DecimalField(max_digits=4,decimal_places=2,null=True, blank=True)
+    moyue=models.DecimalField(max_digits=4,decimal_places=2,null=True, blank=True)
+    moypm=models.DecimalField(max_digits=4,decimal_places=2,null=True, blank=True)    
+    cc=models.DecimalField(max_digits=4,decimal_places=2,null=True, blank=True)
+    examen=models.DecimalField(max_digits=4,decimal_places=2,null=True, blank=True)
     creditsem=models.IntegerField()
     creditue=models.IntegerField()
     creditpm=models.IntegerField()
@@ -124,12 +128,13 @@ class notes(models.Model):
     sessionsem=models.CharField(max_length=15)
     sessionue=models.CharField(max_length=15)
     sessionpm=models.CharField(max_length=15)    
-    profmatiere=models.ForeignKey(profmatiere, verbose_name=("profmatiere"), on_delete=models.CASCADE)    
-    inscription=models.ForeignKey(inscription, verbose_name=("inscription"), on_delete=models.CASCADE)  
+    profmatiere=models.ForeignKey(profmatiere, on_delete=models.CASCADE)    
+    inscription=models.ForeignKey(inscription, on_delete=models.CASCADE) 
+    
     class meta ():
-        verbose_name='notesemestre'  
+        verbose_name='notes'  
     def __str__(self):
-        return self.ancienid
+        return self.sessionpm
     def get_absolute_url(self):
          return reverse(notes, kwargs={"pk": self.pk})
 

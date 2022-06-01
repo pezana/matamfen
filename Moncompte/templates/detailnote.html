@@ -1,0 +1,26 @@
+{%extends 'base2.html'%} {%block profil %} {{logged_user.etudiant}}-{{logged_user.etudiant.prenom}}{%endblock profil %} {%block specialite %}{{logged_user.formation.detailformation}}, {{logged_user.formation.niveau}}, {{logged_user.formation.tutelle}}
+{%endblock specialite%} {%block action %}
+<h4>{{dtlnote.profmatiere.codepm}} | {{dtlnote.profmatiere.matiere}}</h4>
+<div id="ttrow">
+    <a href="#" id="monbtn"> Detail des notes du semestre</a>
+    <a href="#" id="monbtn"> Detail des notes de l'UE</a>
+</div>
+<br> {%endblock action %} {%block interne%}
+<dl class="fieldliste">
+    <dt>SEMESTRE :</dt>
+    <dd>{{dtlnote.profmatiere.semestre}}</dd>
+    <dt>UNITE D'ENSEIGNEMENT :</dt>
+    <dd>{{dtlnote.profmatiere.codeue}} | {{dtlnote.profmatiere.ue}}</dd>
+    <dt>CONTROLE CONTINU :</dt>
+    <dd>{{dtlnote.cc}}</dd>
+    <dt>EXAMEN :</dt>
+    <dd>{{dtlnote.examen}}</dd>
+    <dt>MOYENNE :</dt>
+    <dd>{{dtlnote.moypm}}</dd>
+    <dt>CREDIT OBTENU :</dt>
+    <dd>{{dtlnote.creditpm}}</dd>
+    <dt>DECISION :</dt>
+    <dd>{{dtlnote.decisionpm}}</dd>
+    <dt>SESSION :</dt>
+    <dd>{{dtlnote.sessionpm}}</dd>
+</dl> {%endblock interne %}

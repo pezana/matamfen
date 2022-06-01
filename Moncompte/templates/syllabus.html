@@ -1,29 +1,61 @@
 {%extends 'base2.html'%} {%block profil %} {{logged_user.etudiant}}-{{logged_user.etudiant.prenom}}{%endblock profil %} {%block specialite %}{{logged_user.formation.detailformation}}, {{logged_user.formation.niveau}}, {{logged_user.formation.tutelle}}
 {%endblock specialite%} {%block menu %}Syllabus{%endblock menu %} {%block action %} Liste des cours{%endblock action %} {%block interne%}
+<style>
+    .td1 {
+        border-bottom: 1px solid rgb(93, 68, 99);
+        border-left: 1px solid rgb(93, 68, 99);
+        text-align: center;
+    }
+    
+    table {
+        border: 1px solid rgb(93, 68, 99);
+    }
+    
+    table thead {
+        background-color: rgb(93, 68, 99);
+        color: white;
+        border: 1px solid rgb(93, 68, 99);
+        text-align: center;
+    }
+</style>
 <table class="table">
     <thead>
         <td>N°</td>
-        <td>semestre</td>
-        <td>ue</td>
-        <td>code matiere</td>
-        <td>matiere</td>
-        <td>credits matiere</td>
-        <td>Détail</td>
+        <td> SEMESTRE </td>
+        <td>UNITE D'ENSEIGNEMENT</td>
+        <td>CODE MATIERE</td>
+        <td>LIBELLE MATIERE</td>
+        <td>CREDIT DE LA MATIERE</td>
+        <td>VOIR LE DETAIL</td>
     </thead>
     <tbody>
-        {% for item in syl%}
+        {% for item in syl %}
         <tr>
-            <td>1</td>
-            <td>{{item.semestre}}</td>
-            <td>{{item.ue|truncatechars:15}}</td>
-            <td>{{item.codepm}}</td>
-            <td>{{item.matiere}}</td>
-            <td>{{item.creditpm}}crédit(s)</td>
-            <td> <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-            detail
-           </button></td>
+            <td class="td1">{{ forloop.counter }}</td>
+            <td class="td1">{{item.semestre}}</td>
+            <td class="td1">{{item.ue|truncatechars:20}}</td>
+            <td class="td1">{{item.codepm}}</td>
+            <td class="td1">{{item.matiere|truncatechars:20}}</td>
+            <td class="td1">{{item.creditpm}}crédit(s)</td>
+            <td class="td1">
+                <a href="detailsMatiere/{{item.idpm}}" id="monbtn"> voir plus</a>
+            </td>
         </tr>
         {% endfor %}
     </tbody>
 </table>
+<!-- <div class="pagination">
+    <span class="step-links">
+    {% if syl.has_previous %}
+    <a href="?page=1">&laquo; first</a>
+    <a href="?page={{ syl.previous_page }}">previous</a>
+    {% endif %}
+    <span class="current">
+    Page {{ syl.number }} of {{ syl.paginator.num_pages }}.
+    </span> {% if syl.has_next %}
+    <a href="?page={{ syl.next_page }}">next</a>
+    <a href="?page={{ syl.paginator.num_pages }}">last &raquo;</a> {% endif %}
+    </span>
+</div> -->
+
 {%endblock interne %}

@@ -1,2 +1,2 @@
-{%extends 'base2.html'%} {%block profil %}{{logged_user.etudiant}}-{{logged_user.etudiant.prenom}}{%endblock profil %} {%block specialite %}{{logged_user.formation.detailformation}}, {{logged_user.formation.niveau}}, {{logged_user.formation.tutelle}}
+{%extends 'base2.html'%} {%block profil %}{{logged_user.etudiant|upper}} {{logged_user.etudiant.prenom}}{%endblock profil %} {%block specialite %}{{logged_user.formation.detailformation}}, {{logged_user.formation.niveau}}, {{logged_user.formation.tutelle}}
 {%endblock specialite%} {%block menu %} Tableu de Bord {%endblock menu %} {%block action %}-{%endblock action %} {%block interne%} {%endblock interne%}

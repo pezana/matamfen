@@ -16,5 +16,21 @@ class etudiantserializer(serializers.ModelSerializer):
 class inscriptionserializer(serializers.ModelSerializer):
     class Meta():
         model=inscription
-        fields='__all__'        
-                
+        fields='__all__'  
+        
+
+class anneeserialiser(serializers.ModelSerializer):
+    class Meta():
+        model=anneeacademique
+        fields='__all__'  
+      
+class profmatiereserialiser(serializers.ModelSerializer):
+    class Meta():
+        model=profmatiere
+        fields='__all__'  
+                        
+class noteserialiser(serializers.ModelSerializer):
+    class Meta():
+        model=notes
+        fields='__all__'  
+                                       

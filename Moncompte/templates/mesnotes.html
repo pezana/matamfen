@@ -1,2 +1,49 @@
 {%extends 'base2.html'%} {%block profil %} {{logged_user.etudiant}}-{{logged_user.etudiant.prenom}}{%endblock profil %} {%block specialite %} {{logged_user.formation.detailformation}}, {{logged_user.formation.niveau}}, {{logged_user.formation.tutelle}}
-{%endblock specialite%} {%block menu %} Mes notes {%endblock menu %} {%block action %}-{%endblock action %} {%block interne%} {%endblock interne%}
+{%endblock specialite%} {%block menu %} Mes notes {%endblock menu %} {%block action %}{%endblock action %} {%block interne%}
+<style>
+    .td1 {
+        border-bottom: 1px solid rgb(93, 68, 99);
+        border-left: 1px solid rgb(93, 68, 99);
+        text-align: center;
+    }
+    
+    table {
+        border: 1px solid rgb(93, 68, 99);
+    }
+    
+    table thead {
+        background-color: rgb(93, 68, 99);
+        color: white;
+        border: 1px solid rgb(93, 68, 99);
+        text-align: center;
+    }
+</style>
+<table class="table">
+    <thead>
+        <td>CODE MATIERE</td>
+        <td>LIBELLE MATIERE </td>
+        <td>CC</td>
+        <td>EXAMEN</td>
+        <td>MOYENNE</td>
+        <td>CREDIT(S)</td>
+        <td>SESSION</td>
+        <td>VOIR LE DETAIL</td>
+    </thead>
+    <tbody>
+        {% for item in note %}
+        <tr>
+            <td class="td1">{{item.profmatiere}}</td>
+            <td class="td1">{{item.profmatiere.matiere|truncatechars:20}}</td>
+            <td class="td1">{{item.cc}}</td>
+            <td class="td1">{{item.examen}}</td>
+            <td class="td1">{{item.moypm}}</td>
+            <td class="td1">{{item.creditpm}}</td>
+            <td class="td1">{{item.sessionpm}}</td>
+            <td class="td1">
+                <a href="detailsnote/{{item.id}}" id="monbtn"> voir plus</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{%endblock interne%}

@@ -11,5 +11,3 @@ admin.site.register(profmatiere)
 admin.site.register(notes)
 class listeetudiant(ImportExportModelAdmin):
     liste_display=('nom','prenom')
-
-

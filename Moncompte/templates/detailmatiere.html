@@ -1,0 +1,19 @@
+{%extends 'base2.html'%} {%block profil %} {{logged_user.etudiant}}-{{logged_user.etudiant.prenom}}{%endblock profil %} {%block specialite %}{{logged_user.formation.detailformation}}, {{logged_user.formation.niveau}}, {{logged_user.formation.tutelle}}
+{%endblock specialite%} {%block action %}
+<h4>{{dtlpm.matiere}}</h4>{%endblock action %} {%block interne%}
+<dl class="fieldliste">
+    <dt>SEMESTRE :</dt>
+    <dd>{{dtlpm.semestre}}</dd>
+    <dt>CODE UE :</dt>
+    <dd>{{dtlpm.codeue}}</dd>
+    <dt>UNITE D'ENSEIGNEMENT :</dt>
+    <dd>{{dtlpm.ue}}</dd>
+    <dt>MODULE :</dt>
+    <dd>{{dtlpm.moduleue}}</dd>
+    <dt>CODE MARIETE :</dt>
+    <dd>{{dtlpm.codepm}}</dd>
+    <dt>CREDIT MATIERE :</dt>
+    <dd>{{dtlpm.creditpm}}</dd>
+    <dt>ENSEIGNANT :</dt>
+    <dd>{{dtlpm.enseignant}}</dd>
+</dl> {%endblock interne %}

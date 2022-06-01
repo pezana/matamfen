@@ -2,6 +2,7 @@ from logging import PlaceHolder
 from django import forms
 
 from django.forms import formset_factory
+from django.shortcuts import get_object_or_404
 from .models import *
 
 class loginForm(forms.Form):
@@ -14,7 +15,7 @@ class loginForm(forms.Form):
         mdp=clean_data.get('mdp')
         if pseudo and mdp:
            inscript=inscription.objects.filter(inslogin=pseudo,insmdp=mdp)
-           if len(inscript)!=1:
+           if len(inscript)!=1:               
                raise forms.ValidationError('vos informations ne sont pas correctes')
         else:
             raise forms.ValidationError('Entrer vos accès')  
